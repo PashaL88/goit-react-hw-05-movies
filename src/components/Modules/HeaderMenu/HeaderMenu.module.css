@@ -1,0 +1,28 @@
+.headerMenu {
+    display: flex;
+    list-style: none;
+    font-weight: 500;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14);
+    padding: 15px 0px;
+    margin: 0;
+}
+
+.item {
+    margin-left: 15px;
+}
+
+.link {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    color: grey;
+    text-decoration-line: underline;
+    
+}
+
+.active {
+    color: grey;
+}
