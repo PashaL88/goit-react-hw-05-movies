@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+    border-bottom: 2px solid rgb(227, 215, 215);
+}
+
+.image {
+    margin-bottom: 10px;
+    width: 250px;
+    height: 400px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}

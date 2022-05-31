@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getMovies } from '../../shared/Fetch/fetch';
+import { getTrending } from '../../shared/Fetch/fetch';
 
 const TrendingMovies = () => {
   const [trending, setTrending] = useState({
@@ -14,8 +14,7 @@ const TrendingMovies = () => {
     const fetchTrending = async () => {
       setTrending(prevState => ({ ...prevState, loading: true }));
       try {
-        const result = await getMovies();
-        console.log(result.results);
+        const result = await getTrending();
         setTrending(prevState => ({
           ...prevState,
           loading: false,
