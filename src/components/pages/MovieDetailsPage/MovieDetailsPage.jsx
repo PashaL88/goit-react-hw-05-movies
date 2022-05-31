@@ -1,27 +1,28 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './movieDetailsPage.module.css';
 
-import { getMovie } from 'components/shared/Fetch/fetch';
+import { getMovieById } from 'components/shared/Fetch/fetch';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState({
-    items: {},
+    content: {},
     loading: false,
     error: null,
   });
   const { id } = useParams();
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   useEffect(() => {
     const fetchMovie = async () => {
       setMovie(prevState => ({ ...prevState, loading: true }));
       try {
-        const result = await getMovie(id);
-        console.log(result);
+        const result = await getMovieById(id);
         setMovie(prevState => ({
           ...prevState,
           loading: false,
-          items: result,
+          content: result,
         }));
       } catch (error) {
         setMovie(prevState => ({
@@ -34,7 +35,7 @@ const MovieDetailsPage = () => {
     fetchMovie();
   }, [id]);
 
-  const { items, loading, error } = movie;
+  const { content, loading, error } = movie;
   const {
     title,
     vote_average,
@@ -42,16 +43,17 @@ const MovieDetailsPage = () => {
     poster_path,
     release_date,
     genres = [],
-  } = items;
+  } = content;
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-  console.log(genres);
 
   return (
     <>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <a href="/">Go back</a>
-      {Object.keys(items).length > 0 && (
+      <button type="button" onClick={goBack}>
+        Go back
+      </button>
+      {Object.keys(content).length > 0 && (
         <>
           <div className={styles.card}>
             <img

@@ -1,9 +1,10 @@
 import styles from './moviesPage.module.css';
+import MoviesSearch from 'components/Modules/MoviesSearch';
+
 const MoviesPage = () => {
   return (
     <div className={styles.moviesPage}>
-      <input type="text" />
-      <button>Search</button>
+      <MoviesSearch />
     </div>
   );
 };
