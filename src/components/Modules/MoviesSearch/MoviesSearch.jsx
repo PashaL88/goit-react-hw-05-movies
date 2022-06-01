@@ -19,7 +19,6 @@ const MoviesSearch = () => {
       setMovies(prevState => ({ ...prevState, loading: true }));
       try {
         const result = await getMovie(q);
-        console.log(result.results);
         setMovies(prevState => ({
           ...prevState,
           loading: false,

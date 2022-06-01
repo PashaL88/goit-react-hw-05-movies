@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './movieDetailsPage.module.css';
 
@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
             <img
               className={styles.image}
               src={IMG_URL + poster_path}
-              alt="{title}"
+              alt={title}
             />
             <div className={styles.description}>
               <h2>
@@ -76,13 +76,22 @@ const MovieDetailsPage = () => {
               </p>
             </div>
           </div>
-          <ul>
-            Aditional information
-            <li>Cast</li>
-            <li>Reviews</li>
+          <p>Aditional information</p>
+          <ul className={styles.list}>
+            <li className={styles.item}>
+              <Link className={styles.link} to={`/movies/${id}/cast`}>
+                Cast
+              </Link>
+            </li>
+            <li className={styles.item}>
+              <Link className={styles.link} to={`/movies/${id}/reviews`}>
+                Reviews
+              </Link>
+            </li>
           </ul>
         </>
       )}
+      <Outlet />
     </>
   );
 };

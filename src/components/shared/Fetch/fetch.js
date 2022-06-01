@@ -27,3 +27,15 @@ export const getMovie = async query => {
 
   return data;
 };
+
+export const getCast = async id => {
+  const { data } = await instance.get(`/movie/${id}/credits`);
+
+  return data;
+};
+
+export const getReviews = async id => {
+  const { data } = await instance.get(`/movie/${id}/reviews`);
+
+  return data;
+};

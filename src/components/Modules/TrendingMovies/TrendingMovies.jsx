@@ -21,7 +21,7 @@ TrendingMovies.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      title: PropTypes.string,
     })
   ),
 };

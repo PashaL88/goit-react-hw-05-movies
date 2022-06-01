@@ -14,3 +14,15 @@
     flex-direction: column;
     margin-left: 15px;
 }
+
+.list {
+border-bottom: 2px solid rgb(227, 215, 215);
+}
+
+.item {
+margin-bottom: 10px;
+}
+
+
+
+
