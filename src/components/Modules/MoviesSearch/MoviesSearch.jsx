@@ -1,7 +1,8 @@
 import MoviesSearchForm from './MoviesSearchForm';
 import { useState, useEffect } from 'react';
 import { getMovie } from 'components/shared/Fetch/fetch';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import TrendingMovies from '../TrendingMovies';
 
 const MoviesSearch = () => {
   const [movies, setMovies] = useState({
@@ -9,14 +10,15 @@ const MoviesSearch = () => {
     loading: false,
     error: null,
   });
-  const [query, setQuery] = useState('');
-  const onSubmit = ({ query }) => setQuery(query);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const onSubmit = ({ query }) => setSearchParams({ query });
+  const q = searchParams.get('query');
 
   useEffect(() => {
     const searchMovies = async () => {
       setMovies(prevState => ({ ...prevState, loading: true }));
       try {
-        const result = await getMovie(query);
+        const result = await getMovie(q);
         console.log(result.results);
         setMovies(prevState => ({
           ...prevState,
@@ -31,23 +33,17 @@ const MoviesSearch = () => {
         }));
       }
     };
-    if (query) {
+    if (q) {
       searchMovies();
     }
-  }, [query]);
+  }, [q]);
 
   const { items, loading, error } = movies;
-
-  const elements = items.map(({ id, title }) => (
-    <li key={id}>
-      <Link to={`/movies/${id}`}>{title}</Link>
-    </li>
-  ));
 
   return (
     <>
       <MoviesSearchForm onSubmit={onSubmit} />
-      {Boolean(items.length) && <ul>{elements}</ul>}
+      <TrendingMovies items={items} />
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
     </>

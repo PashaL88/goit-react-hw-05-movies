@@ -2,7 +2,7 @@ import styles from './HeaderMenu.module.css';
 import { NavLink } from 'react-router-dom';
 
 const getActiveLink = ({ isActive }) => {
-  return isActive ? `${styles.link} ${styles.active}` : `${styles.link}`;
+  return isActive ? `${styles.active}` : `${styles.link}`;
 };
 
 const HeaderMenu = () => {
