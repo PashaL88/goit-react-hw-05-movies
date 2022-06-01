@@ -32,7 +32,6 @@ const CastPage = () => {
   }, [id]);
 
   const { items, loading, error } = cast;
-  console.log(items);
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
   const elements = items.map(({ id, name, character, profile_path }) => (

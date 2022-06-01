@@ -1,10 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const TrendingMovies = ({ items }) => {
-  const elements = items.map(({ id, title }) => (
+  const location = useLocation();
+
+  const elements = items.map(({ id, title, original_name }) => (
     <li key={id}>
-      <Link to={`/movies/${id}`}>{title}</Link>
+      {title && (
+        <Link state={{ from: location }} to={`/movies/${id}`}>
+          {title}
+        </Link>
+      )}
+      {!title && (
+        <Link state={{ from: location }} to={`/movies/${id}`}>
+          {original_name}
+        </Link>
+      )}
     </li>
   ));
 
@@ -22,6 +33,7 @@ TrendingMovies.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string,
+      original_name: PropTypes.string,
     })
   ),
 };

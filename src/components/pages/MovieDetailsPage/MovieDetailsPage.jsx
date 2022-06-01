@@ -1,4 +1,10 @@
-import { Link, useParams, useNavigate, Outlet } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+  useNavigate,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './movieDetailsPage.module.css';
 
@@ -12,7 +18,10 @@ const MovieDetailsPage = () => {
   });
   const { id } = useParams();
   const navigate = useNavigate();
-  const goBack = () => navigate(-1);
+
+  const location = useLocation();
+  const { from } = location.state;
+  const goBack = () => navigate(from);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -49,18 +58,20 @@ const MovieDetailsPage = () => {
   return (
     <>
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>Not found description of this film</p>}
       <button type="button" onClick={goBack}>
         Go back
       </button>
       {Object.keys(content).length > 0 && (
         <>
           <div className={styles.card}>
-            <img
-              className={styles.image}
-              src={IMG_URL + poster_path}
-              alt={title}
-            />
+            {poster_path && (
+              <img
+                className={styles.image}
+                src={IMG_URL + poster_path}
+                alt={title}
+              />
+            )}
             <div className={styles.description}>
               <h2>
                 {title} ({release_date.slice(0, 4)})
@@ -79,12 +90,20 @@ const MovieDetailsPage = () => {
           <p>Aditional information</p>
           <ul className={styles.list}>
             <li className={styles.item}>
-              <Link className={styles.link} to={`/movies/${id}/cast`}>
+              <Link
+                state={{ from }}
+                className={styles.link}
+                to={`/movies/${id}/cast`}
+              >
                 Cast
               </Link>
             </li>
             <li className={styles.item}>
-              <Link className={styles.link} to={`/movies/${id}/reviews`}>
+              <Link
+                state={{ from }}
+                className={styles.link}
+                to={`/movies/${id}/reviews`}
+              >
                 Reviews
               </Link>
             </li>
