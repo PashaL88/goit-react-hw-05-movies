@@ -6,16 +6,11 @@ const TrendingMovies = ({ items }) => {
 
   const elements = items.map(({ id, title, original_name }) => (
     <li key={id}>
-      {title && (
+      {
         <Link state={{ from: location }} to={`/movies/${id}`}>
-          {title}
+          {title || original_name}
         </Link>
-      )}
-      {!title && (
-        <Link state={{ from: location }} to={`/movies/${id}`}>
-          {original_name}
-        </Link>
-      )}
+      }
     </li>
   ));
 

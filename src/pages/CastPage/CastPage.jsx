@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'components/shared/Fetch/fetch';
 
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
 const CastPage = () => {
   const [cast, setCast] = useState({
     items: [],
@@ -32,7 +34,6 @@ const CastPage = () => {
   }, [id]);
 
   const { items, loading, error } = cast;
-  const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
   const elements = items.map(({ id, name, character, profile_path }) => (
     <li key={id}>

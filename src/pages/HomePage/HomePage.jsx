@@ -1,7 +1,7 @@
 import TrendingMovies from 'components/Modules/TrendingMovies';
 import { useState, useEffect } from 'react';
 
-import { getTrending } from '../../shared/Fetch/fetch';
+import { getTrending } from '../../components/shared/Fetch/fetch';
 
 const HomePage = () => {
   const [trending, setTrending] = useState({

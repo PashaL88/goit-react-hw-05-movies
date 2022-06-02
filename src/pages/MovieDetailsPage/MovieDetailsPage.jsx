@@ -10,6 +10,8 @@ import styles from './movieDetailsPage.module.css';
 
 import { getMovieById } from 'components/shared/Fetch/fetch';
 
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState({
     content: {},
@@ -20,7 +22,7 @@ const MovieDetailsPage = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const { from } = location.state;
+  const from = location?.state?.from || '/';
   const goBack = () => navigate(from);
 
   useEffect(() => {
@@ -53,7 +55,6 @@ const MovieDetailsPage = () => {
     release_date,
     genres = [],
   } = content;
-  const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
   return (
     <>

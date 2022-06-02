@@ -2,11 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import HeaderMenu from './Modules/HeaderMenu';
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const MoviesPage = lazy(() => import('./pages/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage'));
-const CastPage = lazy(() => import('./pages/CastPage'));
-const ReviewsPage = lazy(() => import('./pages/ReviewsPage'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
+const CastPage = lazy(() => import('../pages/CastPage'));
+const ReviewsPage = lazy(() => import('../pages/ReviewsPage'));
 
 export const App = () => (
   <div className="App">
